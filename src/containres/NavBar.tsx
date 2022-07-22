@@ -1,37 +1,25 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import logo from '../assets/logo.svg'
+import { Logo } from '../components/Logo'
 import { locale } from '../locale'
 
 export const NavBar = () => {
   return (
-    <NavBarContainer>
+    <Container>
       <Logo />
       <Nav>
-        <NavItem link="#">{locale.nav.howItWork}</NavItem>
-        <NavItem link="#">{locale.nav.planYourTrip}</NavItem>
-        <NavItem link="#">{locale.nav.destinations}</NavItem>
-        <NavItem link="#">{locale.nav.travelStories}</NavItem>
+        {locale.nav.map((text, index) => (
+          <NavItem link="#" key={index}>
+            {text}
+          </NavItem>
+        ))}
       </Nav>
       <LoginButton>{locale.buttonLogin}</LoginButton>
-    </NavBarContainer>
+    </Container>
   )
 }
 
-export const Logo = () => {
-  return (
-    <LogoContainer>
-      <LogoImg src={logo} alt={locale.logoName} />
-      <LogoText>{locale.logoName}</LogoText>
-    </LogoContainer>
-  )
-}
-
-const LogoImg = styled.img`
-  margin-right: 6px;
-`
-
-const NavBarContainer = styled.div`
+const Container = styled.div`
   background-color: rgba(242, 120, 92, 0.7);
   box-shadow: 0 4px 4px rgba(13, 96, 111, 0.5);
   height: 90px;
@@ -42,21 +30,6 @@ const NavBarContainer = styled.div`
   margin: 0 auto;
   width: 1440px;
   box-sizing: border-box;
-`
-
-const LogoText = styled.span`
-  font-family: 'Magra', sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 39px;
-  color: #ffffff;
-`
-
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: baseline;
-  justify-content: left;
 `
 
 type NavProps = {

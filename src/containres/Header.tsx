@@ -1,19 +1,19 @@
 import React from 'react'
-import { AdaptiveContainer } from '../components/AdaptiveContainer'
 import styled from 'styled-components'
 import { locale } from '../locale'
+import { Container } from '../components/Container'
 
 const HEADER_CONTAINER_HEIGHT = '765px'
 
 export const Header = () => {
   return (
-    <AdaptiveContainer height={HEADER_CONTAINER_HEIGHT}>
+    <Container height={HEADER_CONTAINER_HEIGHT}>
       <HeaderWrapper>
         <Title>{locale.header.title}</Title>
         <Description>{locale.header.description}</Description>
       </HeaderWrapper>
       <StartPlaning />
-    </AdaptiveContainer>
+    </Container>
   )
 }
 

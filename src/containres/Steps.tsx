@@ -1,21 +1,21 @@
-import React, { FC, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import { AdaptiveContainer } from '../components/AdaptiveContainer'
 import stpLogo1 from '../assets/steps_01.svg'
 import stpLogo2 from '../assets/steps_02.svg'
 import stpLogo3 from '../assets/steps_03.svg'
 import { locale } from '../locale'
+import { Container } from '../components/Container'
 
 export const Steps = () => {
   return (
-    <AdaptiveContainer>
+    <Container>
       <StepsTitle>{locale.steps.title}</StepsTitle>
       <StepsContainer>
         <StepSection img={stpLogo1}>{locale.steps.step01}</StepSection>
         <StepSection img={stpLogo2}>{locale.steps.step02}</StepSection>
         <StepSection img={stpLogo3}>{locale.steps.step03}</StepSection>
       </StepsContainer>
-    </AdaptiveContainer>
+    </Container>
   )
 }
 

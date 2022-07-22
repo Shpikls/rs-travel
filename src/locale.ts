@@ -1,11 +1,6 @@
 export const locale = {
   logoName: `Travel Portal`,
-  nav: {
-    howItWork: 'How It Works',
-    planYourTrip: 'Plan Your Trip',
-    destinations: 'Destinations',
-    travelStories: 'Travel Stories',
-  },
+  nav: ['How It Works', 'Plan Your Trip', 'Destinations', 'Travel Stories'],
   buttonLogin: 'Login',
   header: {
     title: 'Explore the beauty of the World',

@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AdaptiveSection } from '../components/AdaptiveContainer'
 import iconsInstagram from '../assets/icon_instagram.svg'
 import iconsYoutube from '../assets/icons_youtube.svg'
 import iconsTwitter from '../assets/icons_twitter.svg'
+import { Container } from '../components/Container'
 
 export const Footer = () => {
   return (
@@ -33,7 +33,7 @@ const IconContainer = styled.div`
   }
 `
 
-const FooterContainer = styled(AdaptiveSection)`
+const FooterContainer = styled(Container)`
   min-height: 60px;
   display: flex;
   align-items: center;
