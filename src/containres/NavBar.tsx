@@ -1,20 +1,36 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 import { Logo } from '../components/Logo'
-import { locale } from '../locale'
+import { useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
+import { NavSkeleton } from '../components/NavSkeleton'
+import { LoginButtonSkeleton } from '../components/LoginButtonSkeleton'
 
 export const NavBar = () => {
+  const nav = useSelector((state: RootState) => state.app.cms.nav)
+  const buttonLogin = useSelector(
+    (state: RootState) => state.app.cms.buttonLogin
+  )
+
   return (
     <Container>
       <Logo />
       <Nav>
-        {locale.nav.map((text, index) => (
-          <NavItem link="#" key={index}>
-            {text}
-          </NavItem>
-        ))}
+        {!nav ? (
+          <NavSkeleton />
+        ) : (
+          nav.map((text, index) => (
+            <NavItem link="#" key={index}>
+              {text}
+            </NavItem>
+          ))
+        )}
       </Nav>
-      <LoginButton>{locale.buttonLogin}</LoginButton>
+      {!buttonLogin ? (
+        <LoginButtonSkeleton />
+      ) : (
+        <LoginButton>{buttonLogin}</LoginButton>
+      )}
     </Container>
   )
 }

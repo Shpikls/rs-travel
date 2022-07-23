@@ -1,19 +1,26 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import stpLogo1 from '../assets/steps_01.svg'
-import stpLogo2 from '../assets/steps_02.svg'
-import stpLogo3 from '../assets/steps_03.svg'
-import { locale } from '../locale'
 import { Container } from '../components/Container'
+import { useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
+import { getImage } from '../helpers/getImage'
 
 export const Steps = () => {
+  const steps = useSelector((state: RootState) => state.app.cms.steps)
+
   return (
     <Container>
-      <StepsTitle>{locale.steps.title}</StepsTitle>
+      <StepsTitle>{steps?.title}</StepsTitle>
       <StepsContainer>
-        <StepSection img={stpLogo1}>{locale.steps.step01}</StepSection>
-        <StepSection img={stpLogo2}>{locale.steps.step02}</StepSection>
-        <StepSection img={stpLogo3}>{locale.steps.step03}</StepSection>
+        <StepSection img={getImage('steps_01.svg')}>
+          {steps?.step01}
+        </StepSection>
+        <StepSection img={getImage('steps_02.svg')}>
+          {steps?.step02}
+        </StepSection>
+        <StepSection img={getImage('steps_03.svg')}>
+          {steps?.step03}
+        </StepSection>
       </StepsContainer>
     </Container>
   )

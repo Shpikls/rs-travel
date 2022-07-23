@@ -1,23 +1,25 @@
 import React from 'react'
 import styled from 'styled-components'
-import iconsInstagram from '../assets/icon_instagram.svg'
-import iconsYoutube from '../assets/icons_youtube.svg'
-import iconsTwitter from '../assets/icons_twitter.svg'
 import { Container } from '../components/Container'
+import { getImage } from '../helpers/getImage'
+import { useSelector } from 'react-redux'
+import { selectCopyright } from '../redux/selectors'
 
 export const Footer = () => {
+  const copyright = useSelector(selectCopyright)
+
   return (
     <FooterContainer>
-      <Copyright>All Rights Reserved © Travel Portal</Copyright>
+      <Copyright>{copyright}</Copyright>
       <IconContainer>
-        <a href="#">
-          <img src={iconsInstagram} alt="iconsInstagram" />
+        <a href="javascript:void(0)">
+          <img src={getImage('icon_instagram.svg')} alt="icon instagram" />
         </a>
-        <a href="#">
-          <img src={iconsYoutube} alt="iconsYoutube" />
+        <a href="javascript:void(0)">
+          <img src={getImage('icons_youtube.svg')} alt="icon youtube" />
         </a>
-        <a href="#">
-          <img src={iconsTwitter} alt="iconsTwitter" />
+        <a href="javascript:void(0)">
+          <img src={getImage('icons_twitter.svg')} alt="icon twitter" />
         </a>
       </IconContainer>
     </FooterContainer>

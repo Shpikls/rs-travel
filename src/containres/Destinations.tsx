@@ -1,17 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import { locale } from '../locale'
-import sliderImg01 from '../assets/slider_01.png'
-import sliderImg02 from '../assets/slider_02.png'
-import sliderImg03 from '../assets/slider_03.png'
-import dotActive from '../assets/slider-dot-active.svg'
-import dot from '../assets/slider-dot.svg'
-import arrowRight from '../assets/bi_arrow-right.svg'
+import { useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
+import { getImage } from '../helpers/getImage'
 
 export const Destinations = () => {
+  const destinations = useSelector(
+    (state: RootState) => state.app.cms.destinations
+  )
   return (
     <DestinationContainer>
-      <DestinationsTitle>{locale.destinations.title}</DestinationsTitle>
+      <DestinationsTitle>{destinations?.title}</DestinationsTitle>
       <Slider />
       <SliderDot />
       <FindBtn />
@@ -34,11 +33,21 @@ const DestinationsTitle = styled.h2`
   text-align: center;
 `
 const Slider = () => {
+  const destinations = useSelector(
+    (state: RootState) => state.app.cms.destinations
+  )
+
   return (
     <SliderContainer>
-      <SliderItem img={sliderImg01}>JAPAN</SliderItem>
-      <SliderItem img={sliderImg02}>USA</SliderItem>
-      <SliderItem img={sliderImg03}>ANY</SliderItem>
+      <SliderItem img={getImage('slider_01.png')}>
+        {destinations?.slide1}
+      </SliderItem>
+      <SliderItem img={getImage('slider_02.png')}>
+        {destinations?.slide2}
+      </SliderItem>
+      <SliderItem img={getImage('slider_03.png')}>
+        {destinations?.slide3}
+      </SliderItem>
     </SliderContainer>
   )
 }
@@ -50,7 +59,7 @@ const SliderContainer = styled.div`
 
 type SliderItemProps = {
   img: string
-  children: string
+  children: React.ReactNode
 }
 
 const SliderItem: React.FC<SliderItemProps> = ({ img, children }) => {
@@ -111,7 +120,11 @@ type DotProps = {
 }
 
 const Dot = ({ active }: DotProps) => {
-  return active ? <DotImg src={dotActive} /> : <DotImg src={dot} />
+  return active ? (
+    <DotImg src={getImage('slider-dot-active.svg')} />
+  ) : (
+    <DotImg src={getImage('slider-dot.svg')} />
+  )
 }
 
 const DotImg = styled.img`
@@ -126,7 +139,7 @@ const FindBtn = () => {
   return (
     <FindContainer>
       <FindButton>
-        <ArrowImg src={arrowRight} />
+        <ArrowImg src={getImage('bi_arrow-right.svg')} />
         Find More
       </FindButton>
     </FindContainer>

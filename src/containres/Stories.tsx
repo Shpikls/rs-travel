@@ -1,10 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import storyImg01 from '../assets/stories_01.png'
-import storyImg02 from '../assets/stories_02.png'
-import storyImg03 from '../assets/stories_03.png'
-import storyImg04 from '../assets/stories_04.png'
-import arrowRight from '../assets/bi_arrow-right.svg'
+import { getImage } from '../helpers/getImage'
+import { useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
 
 export const Stories = () => {
   return (
@@ -33,39 +31,14 @@ const Title = styled.h2`
   color: #f2785c;
   text-align: center;
 `
-type NonEmptyArray<T> = [T, ...T[]]
-
-const storyDataArray: NonEmptyArray<StoryData> = [
-  {
-    img: storyImg01,
-    title: '10 Photos of Attractive Thailand',
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-  },
-  {
-    img: storyImg02,
-    title: 'Canyonlands National Park, Utah',
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-  },
-  {
-    img: storyImg03,
-    title: 'I left my heart in the Mountains!',
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-  },
-  {
-    img: storyImg04,
-    title: 'The Longest journey in my life!',
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-  },
-]
 
 const StoriesContent = () => {
+  const stories = useSelector((state: RootState) => state.app.cms.stories)
+  const { content } = stories || {}
+
   return (
     <StoriesContentContainer>
-      {storyDataArray.map((data, key) => (
+      {content?.map((data, key) => (
         <StoryItem data={data} key={key}></StoryItem>
       ))}
     </StoriesContentContainer>
@@ -92,7 +65,7 @@ const StoryItem: React.FC<StoryProps> = ({ data }) => {
 
   return (
     <StoryContainer>
-      <StoryImg src={img} />
+      <StoryImg src={getImage(img)} />
       <StoryContentWrapper>
         <StoryTitle>{title}</StoryTitle>
         <StoryText>{content}</StoryText>
@@ -147,10 +120,13 @@ const StoryLink = styled.a`
 `
 
 const ButtonSeeMore = () => {
+  const stories = useSelector((state: RootState) => state.app.cms.stories)
+  const { buttonSee } = stories || {}
+
   return (
     <SeeMoreContainer>
-      <SeeMoreImg src={arrowRight} />
-      See More
+      <SeeMoreImg src={getImage('bi_arrow-right.svg')} />
+      {buttonSee}
     </SeeMoreContainer>
   )
 }

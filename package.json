@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.3",
+    "@tanstack/react-query": "^4.0.10",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,8 +12,12 @@
     "@types/node": "^16.11.44",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "axios": "^0.27.2",
     "react": "^18.2.0",
+    "react-content-loader": "^6.2.0",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^5.1.5",
+    "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.5",
     "typescript": "^4.7.4",
@@ -21,7 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cms": "node ./cms/server.js"
   },
   "eslintConfig": {
     "extends": [

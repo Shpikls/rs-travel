@@ -1,16 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
-import { locale } from '../locale'
 import { Container } from '../components/Container'
+import { useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
 
 const HEADER_CONTAINER_HEIGHT = '765px'
 
 export const Header = () => {
+  const header = useSelector((state: RootState) => state.app.cms.header)
+
   return (
     <Container height={HEADER_CONTAINER_HEIGHT}>
       <HeaderWrapper>
-        <Title>{locale.header.title}</Title>
-        <Description>{locale.header.description}</Description>
+        <Title>{header?.title}</Title>
+        <Description>{header?.description}</Description>
       </HeaderWrapper>
       <StartPlaning />
     </Container>
@@ -41,10 +44,12 @@ const Description = styled.p`
 `
 
 const StartPlaning = () => {
+  const header = useSelector((state: RootState) => state.app.cms.header)
+
   return (
     <StartPlaningContainer>
-      {locale.header.startPlanningText}
-      <StartPlaningBtn>{locale.header.startPlanningButton}</StartPlaningBtn>
+      {header?.startPlanningText}
+      <StartPlaningBtn>{header?.startPlanningButton}</StartPlaningBtn>
     </StartPlaningContainer>
   )
 }

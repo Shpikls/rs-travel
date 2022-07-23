@@ -1,13 +1,17 @@
-import logo from '../assets/logo.svg'
-import { locale } from '../locale'
 import styled from 'styled-components'
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { getImage } from '../helpers/getImage'
+import { selectLogoName } from '../redux/selectors'
+import { LogoSkeleton } from './LogoSkeleton'
 
 export const Logo = () => {
+  const logoName = useSelector(selectLogoName)
+
   return (
     <LogoContainer>
-      <LogoImg src={logo} alt={locale.logoName} />
-      <LogoText>{locale.logoName}</LogoText>
+      <LogoImg src={getImage('logo.svg')} alt={logoName} />
+      {logoName ? <LogoText>{logoName}</LogoText> : <LogoSkeleton />}
     </LogoContainer>
   )
 }
@@ -27,6 +31,6 @@ const LogoText = styled.span`
 
 const LogoContainer = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: left;
 `

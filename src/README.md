@@ -1,7 +1,9 @@
-Структура проекта
+## Структура проекта
 
 - components
 - containers
-- types
-- locale.tsx
+- redux
+- helpers
+- hooks
 - index.tsx
+- README.md
